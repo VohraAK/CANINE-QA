@@ -1,6 +1,6 @@
 # Group 4: CANINE QA
 
-### GitHub Project Repo: https://github.com/VohraAK/canine-replication/
+### GitHub Project Repo: https://github.com/VohraAK/CANINE-QA/
 
 ---
 
