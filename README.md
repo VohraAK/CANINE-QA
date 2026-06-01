@@ -1,6 +1,10 @@
 # CANINE-QA
 
+<<<<<<< HEAD
 Evaluation of CANINE's tokenization-free architecture on multilingual question answering with parameter-efficient LoRA fine-tuning.
+=======
+### GitHub Project Repo: https://github.com/VohraAK/CANINE-QA/
+>>>>>>> fbc485c3171f87272d126b65054fa4e6a299229d
 
 ## Results
 
