@@ -1,25 +1,36 @@
-# Group 4: CANINE QA
+# CANINE-QA
 
-### GitHub Project Repo: https://github.com/VohraAK/canine-replication/
+Evaluation of CANINE's tokenization-free architecture on multilingual question answering with parameter-efficient LoRA fine-tuning.
 
----
+## Results
 
-### Main Notebooks:
-1. `Reproducing_CANINE_results_tydiqa.ipynb` (TyDiQA with CANINE-C model training + eval)
-2. `Train_CANINE_S_LoRA_UQA_unfiltered.ipynb` (Unfiltered UQA with CANINE-S model training + eval)
-3. `Train_CANINE_S_LoRA_UQA_filtered.ipynb` (Filtered UQA with CANINE-S model training + eval)
+TyDiQA (CANINE-C)
+• 64.20% EM/F1 using only 0.26% trainable parameters
+• Matches original paper benchmarks with 2K training examples
+• 11 languages: Arabic, Bengali, English, Finnish, Indonesian, Japanese, Kiswahili, Korean, Russian, Telugu, Thai
 
-<br>
+UQA (CANINE-S)
+• 0.04% EM, complete training collapse
+• Model predicts only empty spans
+• Failure caused by translation artifacts, dataset imbalance, reduced model capacity
 
-### Running the notebooks:
-Training was done on Kaggle, with additional `pip` dependencies:
-- `peft`
-- `evaluate`
-- `transformers`
-- `Levenshtein`
-- `ipywidgets`
+## Repository Contents
 
-<br>
+```
+Reproducing_CANINE_results_tydiqa.ipynb    TyDiQA success case
+Train_CANINE_S_LoRA_UQA_*.ipynb           UQA failure experiments
+fixed_preprocess_uqa.py                    Character-level preprocessing
+analyze_training_metrics.ipynb             Performance analysis
+checkpoints/                               Model checkpoints
+```
+
+## Setup
+
+```bash
+pip install peft evaluate transformers python-Levenshtein ipywidgets
+```
+
+Training performed on Kaggle.
 
 There might be some cells commented out which load the dataset, split and preprocess them, and cache them in local / Kaggle storage, make sure to tweak them based on the environment and requirements.
 
@@ -27,4 +38,9 @@ A personal HuggingFace token was used to push model checkpoints to HF repositori
 
 Evaluation assets are available under `assets` directory.
 
----
+## Key Finding
+
+Character-level models excel on native multilingual data but fail catastrophically on translated low-resource datasets due to distribution mismatch and preprocessing challenges.
+
+Authors: Abdullah Khurram Vohra, Muhammad Mahad Bhatti, Mir Huzaifa Gujjar
+Course: CS5316 NLP Theory and Applications, LUMS
